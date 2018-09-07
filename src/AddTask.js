@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import DatePicker from 'react-datepicker'
+import moment from 'moment'
+import 'react-datepicker/dist/react-datepicker.css'
 
 class AddTask extends Component {
   constructor (props) {
@@ -6,11 +9,13 @@ class AddTask extends Component {
     super()
     this.state = {
       taskDescription: '',
-      timeNeeded: ''
+      timeNeeded: '',
+      dueDate: moment()
       // user: firebase.auth().currentUser
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleDateChange = this.handleDateChange.bind(this)
     // this.changeLoggedInStatus = this.changeLoggedInStatus.bind(this)
   }
 
@@ -20,6 +25,12 @@ class AddTask extends Component {
 
   handleSubmit (event) {
     event.preventDefault()
+  }
+
+  handleDateChange (date) {
+    this.setState({
+      dueDate: date
+    })
   }
 
   render () {
@@ -34,6 +45,14 @@ class AddTask extends Component {
           <label>
             Time needed:
             <input type='text' value={this.state.timeNeeded} />
+          </label>
+          <label>
+            Due date:
+            <DatePicker
+              dateFormat='YYYY/MM/DD'
+              selected={this.state.dueDate}
+              onChange={this.handleDateChange} />
+            {/* <input type='text' value={this.state.dueDate} /> */}
           </label>
           <button className='formSubmit' type='submit' value='Submit'>Add</button>
         </form>
