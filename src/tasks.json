@@ -1,0 +1,30 @@
+[
+  {
+    "task": "Create component for list of items",
+    "timeNeeded": 120,
+    "timeUsed": 0,
+    "timeLeft": 120,
+    "complete": false
+  },
+  {
+    "task": "Create component for adding an item",
+    "timeNeeded": 80,
+    "timeUsed": 0,
+    "timeLeft": 80,
+    "complete": false
+  },
+  {
+    "task": "Create component for editing an item",
+    "timeNeeded": 20,
+    "timeUsed": 0,
+    "timeLeft": 20,
+    "complete": false
+  },
+  {
+    "task": "Create component for puppies",
+    "timeNeeded": 400,
+    "timeUsed": 0,
+    "timeLeft": 400,
+    "complete": false
+  }
+]

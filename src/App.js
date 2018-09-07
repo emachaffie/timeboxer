@@ -1,21 +1,28 @@
+/* global localStorage */
+
 import React, { Component } from 'react'
-import logo from './logo.svg'
+// import logo from './logo.svg'
 import './App.css'
+// import firebase from './firebase'
+import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom'
+import Dashboard from './Dashboard'
+import tasks from './tasks.json'
+import AddTask from './AddTask'
 
 class App extends Component {
-  render() {
+  render () {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+      <Router>
+        <div>
+          <Route exact path='/' component={Dashboard} />
+          <Route path='/add' component={AddTask} />
+          {/* <Route path='/edit/:id' render={(props) => <EditTask {...props} />} /> */}
+          {/* <Route path='/login' component={LoginPage} /> */}
+          {/* <Route path='/register' component={Register} /> */}
+        </div>
+      </Router>
+    )
   }
 }
 
-export default App;
+export default App
