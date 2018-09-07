@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import './App.css'
 // import firebase from './firebase'
-import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom'
+import { BrowserRouter as Route, Link, NavLink } from 'react-router-dom'
 import tasks from './tasks.json'
 import AddTask from './AddTask.js'
 
