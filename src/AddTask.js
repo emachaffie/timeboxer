@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
+import './App.css'
 import 'react-datepicker/dist/react-datepicker.css'
+import uuid from 'uuid/v4'
+import request from 'superagent'
 
 class AddTask extends Component {
   constructor (props) {
     // let database = firebase.database()
     super()
     this.state = {
+      id: '',
       taskDescription: '',
-      timeNeeded: '',
+      timeNeeded: 0,
       dueDate: moment()
       // user: firebase.auth().currentUser
     }
@@ -20,17 +24,37 @@ class AddTask extends Component {
   }
 
   handleChange (event) {
-    this.setState({value: event.target.value})
-  }
-
-  handleSubmit (event) {
-    event.preventDefault()
+    const key = event.target.name
+    const value = event.target.value
+    this.setState({[key]: value})
+    // this.setState({value: event.target.value})
   }
 
   handleDateChange (date) {
     this.setState({
       dueDate: date
     })
+  }
+
+  handleSubmit (event) {
+    const newId = uuid()
+    this.setState({id: newId})
+    const newTask = {
+      id: newId,
+      taskDescription: this.state.taskDescription,
+      timeNeeded: this.state.timeNeeded,
+      timeUsed: 0,
+      timeLeft: this.state.timeNeeded,
+      dueDate: this.state.dueDate,
+      complete: false
+    }
+    console.log(newTask)
+    event.preventDefault()
+    request
+      .post('http://localhost:8000/tasks/')
+      .send(newTask)
+      .end()
+    // this.props.notAddingContact()
   }
 
   render () {
@@ -40,21 +64,22 @@ class AddTask extends Component {
         <form onSubmit={this.handleSubmit}>
           <label>
           Task:
-            <input type='text' value={this.state.taskDescription} onChange={this.handleChange} />
+            <input type='text' name='taskDescription' onChange={this.handleChange} />
           </label>
           <label>
             Time needed:
-            <input type='text' value={this.state.timeNeeded} />
+            <input type='text' name='timeNeeded' onChange={this.handleChange} />
           </label>
           <label>
             Due date:
             <DatePicker
+              name='dueDate'
               dateFormat='YYYY/MM/DD'
               selected={this.state.dueDate}
               onChange={this.handleDateChange} />
-            {/* <input type='text' value={this.state.dueDate} /> */}
+            {/* Date picker is not closing on selection. */}
           </label>
-          <button className='formSubmit' type='submit' value='Submit'>Add</button>
+          <button className='formSubmit' type='submit' value='Submit'>Add Task</button>
         </form>
       </div>
     )
