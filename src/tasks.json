@@ -4,6 +4,7 @@
     "timeNeeded": 120,
     "timeUsed": 0,
     "timeLeft": 120,
+    "dueDate": "April 2",
     "complete": false
   },
   {
@@ -11,6 +12,7 @@
     "timeNeeded": 80,
     "timeUsed": 0,
     "timeLeft": 80,
+    "dueDate": "April 2",
     "complete": false
   },
   {
@@ -18,6 +20,7 @@
     "timeNeeded": 20,
     "timeUsed": 0,
     "timeLeft": 20,
+    "dueDate": "April 2",
     "complete": false
   },
   {
@@ -25,6 +28,7 @@
     "timeNeeded": 400,
     "timeUsed": 0,
     "timeLeft": 400,
+    "dueDate": "April 2",
     "complete": false
   }
 ]

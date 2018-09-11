@@ -1,0 +1,40 @@
+{
+  "tasks": [
+    {
+      
+      "task": "Create component for list of items",
+      "timeNeeded": 120,
+      "timeUsed": 0,
+      "timeLeft": 120,
+      "dueDate": "April 2",
+      "complete": false
+    },
+    {
+      "id": 2,
+      "task": "Create component for adding an item",
+      "timeNeeded": 80,
+      "timeUsed": 0,
+      "timeLeft": 80,
+      "dueDate": "April 2",
+      "complete": false
+    },
+    {
+      "id": 3,
+      "task": "Create component for editing an item",
+      "timeNeeded": 20,
+      "timeUsed": 0,
+      "timeLeft": 20,
+      "dueDate": "April 2",
+      "complete": false
+    },
+    {
+      "id": 4,
+      "task": "Create component for puppies",
+      "timeNeeded": 400,
+      "timeUsed": 0,
+      "timeLeft": 400,
+      "dueDate": "April 2",
+      "complete": false
+    }
+  ]
+}

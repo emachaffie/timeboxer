@@ -57,7 +57,7 @@ class Dashboard extends Component {
           <div key={i} className='singleTaskDiv'>
             <div className='taskButton' onClick={this.addingTaskFn}>BoxIt
             </div>
-            <h3>{task.task}</h3>
+            <h3 className='taskDescription' onClick={() => this.props.history.push('/task')}>{task.task}</h3>
             <p>Time Allocated: {task.timeNeeded} min.</p>
             <p>Time Left: {task.timeLeft} min.</p>
           </div>
