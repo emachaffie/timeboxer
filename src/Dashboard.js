@@ -3,8 +3,9 @@ import React, { Component } from 'react'
 import './App.css'
 // import firebase from './firebase'
 import { BrowserRouter as Route, Link, NavLink } from 'react-router-dom'
-import tasks from './tasks.json'
+// import tasks from './tasks.json'
 import AddTask from './AddTask.js'
+import request from 'superagent'
 
 class Dashboard extends Component {
   constructor (props) {
@@ -12,15 +13,25 @@ class Dashboard extends Component {
     super()
     this.state = {
       loggedIn: true,
-      // addingTask: false,
-      tasks: tasks
+      tasks: []
       // user: firebase.auth().currentUser
     }
     this.changeLoggedInStatus = this.changeLoggedInStatus.bind(this)
-    // this.addingTaskFn = this.addingTaskFn.bind(this)
+    this.deleteTask = this.deleteTask.bind(this)
+  }
+
+  componentWillUnmount () {
+    console.log('dashboard unmounting')
   }
 
   componentDidMount () {
+    console.log('dashboard mounting')
+    request
+      .get('http://localhost:8000/tasks')
+      .then(response => {
+        let taskArray = response.body
+        this.setState({tasks: taskArray})
+      })
     // if (this.state.addingContact) {
     //   return (
     //     <AddTask />
@@ -39,27 +50,33 @@ class Dashboard extends Component {
     console.log(this.state.loggedIn)
   }
 
-  // addingTaskFn () {
-  //   this.setState({addingTask: true})
-  //   console.log('addingTask to true')
-  // }
+  deleteTask (event) {
+    let taskId = event.target.id
+    // parseint used above because contactId is string and in filter would compare to numbers
+    console.log(event.target)
+    request
+      .delete(`http://localhost:8000/tasks/${taskId}`)
+      .then(
+        this.props.history.push('/')
+        // this.setState(prevState => ({
+        //   tasks: prevState.tasks.filter(task => task.id !== taskId)})
+        // )
+      )
+  }
 
   render () {
-    if (this.state.addingTask) {
-      return <AddTask />
-    }
     return (
       <div className='dashboardDiv'>
         <h1>Timeboxer</h1>
         <p>Knock out your to-do list!</p>
         <button className='addTaskButton' onClick={() => this.props.history.push('/add')}>Add Task</button>
         {this.state.tasks.map((task, i) => (
-          <div key={i} className='singleTaskDiv'>
-            <div className='taskButton' onClick={this.addingTaskFn}>BoxIt
-            </div>
+          <div key={task.id} className='singleTaskDiv'>
             <h3 className='taskDescription' onClick={() => this.props.history.push('/task')}>{task.task}</h3>
             <p>Time Allocated: {task.timeNeeded} min.</p>
             <p>Time Left: {task.timeLeft} min.</p>
+            <button>Edit</button>
+            <button id={task.id} className='deleteButton' onClick={this.deleteTask}>Delete</button>
           </div>
         ))}
       </div>

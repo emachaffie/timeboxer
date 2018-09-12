@@ -12,7 +12,7 @@ class AddTask extends Component {
     super()
     this.state = {
       id: '',
-      taskDescription: '',
+      task: '',
       timeNeeded: 0,
       dueDate: moment()
       // user: firebase.auth().currentUser
@@ -40,8 +40,8 @@ class AddTask extends Component {
     const newId = uuid()
     this.setState({id: newId})
     const newTask = {
-      id: newId,
-      taskDescription: this.state.taskDescription,
+      id: this.state.id,
+      task: this.state.task,
       timeNeeded: this.state.timeNeeded,
       timeUsed: 0,
       timeLeft: this.state.timeNeeded,
@@ -53,8 +53,7 @@ class AddTask extends Component {
     request
       .post('http://localhost:8000/tasks/')
       .send(newTask)
-      .end()
-    // this.props.notAddingContact()
+      .then(() => this.props.history.push('/'))
   }
 
   render () {
@@ -64,7 +63,7 @@ class AddTask extends Component {
         <form onSubmit={this.handleSubmit}>
           <label>
           Task:
-            <input type='text' name='taskDescription' onChange={this.handleChange} />
+            <input type='text' name='task' onChange={this.handleChange} />
           </label>
           <label>
             Time needed:

@@ -30,5 +30,13 @@
     "timeLeft": 400,
     "dueDate": "April 2",
     "complete": false
+  },
+  {
+    "task": "Eat a bagel",
+    "timeNeeded": 400,
+    "timeUsed": 0,
+    "timeLeft": 400,
+    "dueDate": "April 2",
+    "complete": false
   }
 ]
