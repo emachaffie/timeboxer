@@ -18,20 +18,12 @@ class Dashboard extends Component {
     }
     this.changeLoggedInStatus = this.changeLoggedInStatus.bind(this)
     this.deleteTask = this.deleteTask.bind(this)
-  }
-
-  componentWillUnmount () {
-    console.log('dashboard unmounting')
+    this.getTasks = this.getTasks.bind(this)
   }
 
   componentDidMount () {
-    console.log('dashboard mounting')
-    request
-      .get('http://localhost:8000/tasks')
-      .then(response => {
-        let taskArray = response.body
-        this.setState({tasks: taskArray})
-      })
+    console.log('ComponentMounted')
+    this.getTasks()
     // if (this.state.addingContact) {
     //   return (
     //     <AddTask />
@@ -50,17 +42,30 @@ class Dashboard extends Component {
     console.log(this.state.loggedIn)
   }
 
+  getTasks () {
+    request
+      .get('http://localhost:8000/tasks')
+      .then(response => {
+        let taskArray = response.body
+        this.setState({tasks: taskArray})
+      })
+  }
+
   deleteTask (event) {
     let taskId = event.target.id
-    // parseint used above because contactId is string and in filter would compare to numbers
-    console.log(event.target)
+    console.log(event.target.id)
     request
       .delete(`http://localhost:8000/tasks/${taskId}`)
       .then(
-        this.props.history.push('/')
+        this.setState(prevState => ({
+          tasks: prevState.tasks.filter(task => task.id !== taskId)})
+        )
         // this.setState(prevState => ({
         //   tasks: prevState.tasks.filter(task => task.id !== taskId)})
         // )
+      )
+      .then(
+        this.getTasks()
       )
   }
 

@@ -19,83 +19,11 @@
     },
     {
       "id": 3,
-      "task": "Create component for editing an item",
-      "timeNeeded": 20,
+      "task": "eat a bagel",
+      "timeNeeded": "495",
       "timeUsed": 0,
-      "timeLeft": 20,
-      "dueDate": "April 2",
-      "complete": false
-    },
-    {
-      "id": 4,
-      "task": "Make delete re-render page on delete",
-      "timeNeeded": "50",
-      "timeUsed": 0,
-      "timeLeft": "50",
-      "dueDate": "2018-09-11T23:25:30.766Z",
-      "complete": false
-    },
-    {
-      "id": 5,
-      "task": "Eat a bagel",
-      "timeNeeded": "10",
-      "timeUsed": 0,
-      "timeLeft": "10",
-      "dueDate": "2018-09-28T03:47:57.000Z",
-      "complete": false
-    },
-    {
-      "id": 6,
-      "task": "Learn Vue",
-      "timeNeeded": "450",
-      "timeUsed": 0,
-      "timeLeft": "450",
-      "dueDate": "2018-10-02T13:52:22.000Z",
-      "complete": false
-    },
-    {
-      "id": 7,
-      "task": "Learn Angular",
-      "timeNeeded": "500",
-      "timeUsed": 0,
-      "timeLeft": "500",
-      "dueDate": "2018-09-12T13:53:29.313Z",
-      "complete": false
-    },
-    {
-      "id": 8,
-      "task": "Eat more  bagels",
-      "timeNeeded": "20",
-      "timeUsed": 0,
-      "timeLeft": "20",
-      "dueDate": "2018-09-12T13:53:33.966Z",
-      "complete": false
-    },
-    {
-      "id": 9,
-      "task": "Learn Vue",
-      "timeNeeded": "50",
-      "timeUsed": 0,
-      "timeLeft": "50",
-      "dueDate": "2018-09-12T17:42:06.376Z",
-      "complete": false
-    },
-    {
-      "id": 10,
-      "task": "Add edit functionality",
-      "timeNeeded": "50",
-      "timeUsed": 0,
-      "timeLeft": "50",
-      "dueDate": "2018-09-12T17:43:23.942Z",
-      "complete": false
-    },
-    {
-      "id": 11,
-      "task": "Eat more  bagels",
-      "timeNeeded": "50",
-      "timeUsed": 0,
-      "timeLeft": "50",
-      "dueDate": "2018-09-12T17:44:01.992Z",
+      "timeLeft": "495",
+      "dueDate": "2018-09-12T18:16:52.670Z",
       "complete": false
     }
   ]
