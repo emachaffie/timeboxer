@@ -57,14 +57,6 @@ class Dashboard extends Component {
     request
       .delete(`http://localhost:8000/tasks/${taskId}`)
       .then(
-        this.setState(prevState => ({
-          tasks: prevState.tasks.filter(task => task.id !== taskId)})
-        )
-        // this.setState(prevState => ({
-        //   tasks: prevState.tasks.filter(task => task.id !== taskId)})
-        // )
-      )
-      .then(
         this.getTasks()
       )
   }
@@ -77,7 +69,7 @@ class Dashboard extends Component {
         <button className='addTaskButton' onClick={() => this.props.history.push('/add')}>Add Task</button>
         {this.state.tasks.map((task, i) => (
           <div key={task.id} className='singleTaskDiv'>
-            <h3 className='taskDescription' onClick={() => this.props.history.push('/task')}>{task.task}</h3>
+            <Link to={`/task/${task.id}`} className='taskLink'><h3 className='taskDescription'>{task.task}</h3></Link>
             <p>Time Allocated: {task.timeNeeded} min.</p>
             <p>Time Left: {task.timeLeft} min.</p>
             <button>Edit</button>
@@ -86,6 +78,7 @@ class Dashboard extends Component {
         ))}
       </div>
     )
+
     // if (!this.state.loggedIn) {
     //   var provider = new firebase.auth.GoogleAuthProvider()
     //   return (
