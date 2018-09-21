@@ -9,7 +9,7 @@ import request from 'superagent'
 class AddTask extends Component {
   constructor (props) {
     // let database = firebase.database()
-    super()
+    super(props)
     this.state = {
       id: '',
       task: '',
@@ -53,13 +53,12 @@ class AddTask extends Component {
     request
       .post('http://localhost:8000/tasks/')
       .send(newTask)
-      .then(() => this.props.history.push('/'))
+      .then(this.props.addingTaskFn())
   }
 
   render () {
     return (
       <div className='addTaskFormDiv'>
-        <h1>Add a Task</h1>
         <form onSubmit={this.handleSubmit}>
           <label>
           Task:

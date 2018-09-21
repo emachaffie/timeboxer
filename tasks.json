@@ -25,6 +25,24 @@
       "timeLeft": "30",
       "dueDate": "2018-09-18T18:46:32.658Z",
       "complete": false
+    },
+    {
+      "id": 5,
+      "task": "Learn Vue",
+      "timeNeeded": "50",
+      "timeUsed": 0,
+      "timeLeft": "50",
+      "dueDate": "2018-09-21T20:26:17.259Z",
+      "complete": false
+    },
+    {
+      "id": 6,
+      "task": "Get edit working",
+      "timeNeeded": "500",
+      "timeUsed": 0,
+      "timeLeft": "500",
+      "dueDate": "2018-10-02T20:33:21.000Z",
+      "complete": false
     }
   ]
 }
