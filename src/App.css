@@ -2,9 +2,16 @@
   box-sizing: border-box;
 }
 
+.dashboardDiv {
+  margin: 30px;
+}
 .taskButton {
   padding: 5px;
   border: 1px solid black;
   background-color: pink;
   width: 30px;
+}
+
+.taskDescription:hover {
+  cursor: pointer;
 }

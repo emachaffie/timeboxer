@@ -9,7 +9,7 @@ import request from 'superagent'
 class AddTask extends Component {
   constructor (props) {
     // let database = firebase.database()
-    super()
+    super(props)
     this.state = {
       id: '',
       task: '',
@@ -53,13 +53,12 @@ class AddTask extends Component {
     request
       .post('http://localhost:8000/tasks/')
       .send(newTask)
-      .then(() => this.props.history.push('/'))
+      .then(this.props.addingTaskFn())
   }
 
   render () {
     return (
       <div className='addTaskFormDiv'>
-        <h1>Add a Task</h1>
         <form onSubmit={this.handleSubmit}>
           <label>
           Task:
@@ -78,7 +77,7 @@ class AddTask extends Component {
               onChange={this.handleDateChange} />
             {/* Date picker is not closing on selection. */}
           </label>
-          <button className='formSubmit' type='submit' value='Submit'>Add Task</button>
+          <button className='formSubmit' onClick={this.handleSubmit} value='Submit'>Add Task</button>
         </form>
       </div>
     )

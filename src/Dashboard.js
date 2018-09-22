@@ -4,8 +4,10 @@ import './App.css'
 // import firebase from './firebase'
 import { BrowserRouter as Route, Link, NavLink } from 'react-router-dom'
 // import tasks from './tasks.json'
-import AddTask from './AddTask.js'
+import AddTask from './AddTask'
+import TaskList from './TaskList'
 import request from 'superagent'
+import firebase from './firebase'
 
 class Dashboard extends Component {
   constructor (props) {
@@ -13,12 +15,14 @@ class Dashboard extends Component {
     super()
     this.state = {
       loggedIn: true,
-      tasks: []
+      tasks: [],
+      addingTask: false
       // user: firebase.auth().currentUser
     }
     this.changeLoggedInStatus = this.changeLoggedInStatus.bind(this)
-    this.deleteTask = this.deleteTask.bind(this)
+    this.deleteTaskFn = this.deleteTaskFn.bind(this)
     this.getTasks = this.getTasks.bind(this)
+    this.addingTaskFn = this.addingTaskFn.bind(this)
   }
 
   componentDidMount () {
@@ -42,6 +46,18 @@ class Dashboard extends Component {
     console.log(this.state.loggedIn)
   }
 
+  addingTaskFn () {
+    if (this.state.addingTask) {
+      this.setState({
+        addingTask: false
+      })
+    } else {
+      this.setState({
+        addingTask: true
+      })
+    }
+  }
+
   getTasks () {
     request
       .get('http://localhost:8000/tasks')
@@ -51,41 +67,29 @@ class Dashboard extends Component {
       })
   }
 
-  deleteTask (event) {
+  deleteTaskFn (event) {
     let taskId = event.target.id
     console.log(event.target.id)
     request
       .delete(`http://localhost:8000/tasks/${taskId}`)
       .then(
-        this.setState(prevState => ({
-          tasks: prevState.tasks.filter(task => task.id !== taskId)})
-        )
-        // this.setState(prevState => ({
-        //   tasks: prevState.tasks.filter(task => task.id !== taskId)})
-        // )
-      )
-      .then(
-        this.getTasks()
+        // Set state as function that does a FILTER
       )
   }
 
   render () {
+    // if (!this.loggedIn) {
+    //   return <Register />
+    // } else
     return (
       <div className='dashboardDiv'>
         <h1>Timeboxer</h1>
         <p>Knock out your to-do list!</p>
-        <button className='addTaskButton' onClick={() => this.props.history.push('/add')}>Add Task</button>
-        {this.state.tasks.map((task, i) => (
-          <div key={task.id} className='singleTaskDiv'>
-            <h3 className='taskDescription' onClick={() => this.props.history.push('/task')}>{task.task}</h3>
-            <p>Time Allocated: {task.timeNeeded} min.</p>
-            <p>Time Left: {task.timeLeft} min.</p>
-            <button>Edit</button>
-            <button id={task.id} className='deleteButton' onClick={this.deleteTask}>Delete</button>
-          </div>
-        ))}
+        {this.state.addingTask ? <AddTask addingTaskFn={this.addingTaskFn} /> : <button className='addTaskButton' onClick={this.addingTaskFn}>Add Task</button>}
+        <TaskList tasks={this.state.tasks} deleteTaskFn={this.deleteTaskFn} />
       </div>
     )
+
     // if (!this.state.loggedIn) {
     //   var provider = new firebase.auth.GoogleAuthProvider()
     //   return (
