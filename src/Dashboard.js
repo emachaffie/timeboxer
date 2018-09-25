@@ -8,6 +8,7 @@ import AddTask from './AddTask'
 import TaskList from './TaskList'
 import request from 'superagent'
 import firebase from './firebase'
+import EditTask from './EditTask'
 
 class Dashboard extends Component {
   constructor (props) {
@@ -16,23 +17,20 @@ class Dashboard extends Component {
     this.state = {
       loggedIn: true,
       tasks: [],
-      addingTask: false
+      addingTask: false,
+      editingTask: false
       // user: firebase.auth().currentUser
     }
     this.changeLoggedInStatus = this.changeLoggedInStatus.bind(this)
     this.deleteTaskFn = this.deleteTaskFn.bind(this)
     this.getTasks = this.getTasks.bind(this)
     this.addingTaskFn = this.addingTaskFn.bind(this)
+    this.editingTaskFn = this.editingTaskFn.bind(this)
   }
 
   componentDidMount () {
     console.log('ComponentMounted')
     this.getTasks()
-    // if (this.state.addingContact) {
-    //   return (
-    //     <AddTask />
-    //   )
-    // }
     // firebase.auth().onAuthStateChanged(user => {
     //   this.setState({
     //     user: user
@@ -58,10 +56,23 @@ class Dashboard extends Component {
     }
   }
 
+  editingTaskFn () {
+    if (this.state.editingTask) {
+      this.setState({
+        editingTask: false
+      })
+    } else {
+      this.setState({
+        editingTask: true
+      })
+    }
+  }
+
   getTasks () {
     request
       .get('http://localhost:8000/tasks')
       .then(response => {
+        console.log(response.body)
         let taskArray = response.body
         this.setState({tasks: taskArray})
       })
@@ -87,6 +98,7 @@ class Dashboard extends Component {
         <p>Knock out your to-do list!</p>
         {this.state.addingTask ? <AddTask addingTaskFn={this.addingTaskFn} /> : <button className='addTaskButton' onClick={this.addingTaskFn}>Add Task</button>}
         <TaskList tasks={this.state.tasks} deleteTaskFn={this.deleteTaskFn} />
+        {this.state.editingTask ? <EditTask editingTaskFn={this.addingTaskFn} /> : <button className='editTaskButton' onClick={this.editingTaskFn}>Edit</button>}
       </div>
     )
 
