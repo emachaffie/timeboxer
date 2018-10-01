@@ -26,6 +26,10 @@ class Task extends Component {
     this.handleDateChange = this.handleDateChange.bind(this)
   }
 
+  componentDidMount () {
+    console.log(this.state.id)
+  }
+
   editingTaskFn () {
     if (this.state.editingTask) {
       this.setState({
@@ -39,7 +43,6 @@ class Task extends Component {
   }
 
   handleChange (event) {
-    event.preventDefault()
     const key = event.target.name
     const value = event.target.value
     this.setState({[key]: value})

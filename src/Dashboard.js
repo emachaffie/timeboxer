@@ -59,7 +59,6 @@ class Dashboard extends Component {
     request
       .get('http://localhost:8000/tasks')
       .then(response => {
-        console.log(response.body)
         let taskArray = response.body
         this.setState({tasks: taskArray})
       })
