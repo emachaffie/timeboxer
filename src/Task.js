@@ -12,18 +12,31 @@ class Task extends Component {
   constructor (props) {
     super()
     this.state = {
-      editing: false
+      editingTask: false
+    }
+    this.editingTaskFn = this.editingTaskFn.bind(this)
+  }
+
+  editingTaskFn () {
+    if (this.state.editingTask) {
+      this.setState({
+        editingTask: false
+      })
+    } else {
+      this.setState({
+        editingTask: true
+      })
     }
   }
+
   render () {
     const { task, timeNeeded, timeLeft, dueDate, id } = this.props
     return (
       <div>
-        <Link to={`/task/${id}`} className='taskLink'><h3 className='taskDescription'>{task}</h3></Link>
-        <p>Goal Time: {timeNeeded} min.</p>
-        <p>Time Left: {timeLeft} min.</p>
-        <p>Due: {dueDate}</p>
-        <EditTask />
+        {this.state.editingTask ? <EditTask editingTaskFn={this.editingTaskFn} id={id} task={task} timeNeeded={timeNeeded} timeLeft={timeLeft} dueDate={dueDate} /> : <div><Link to={`/task/${id}`} className='taskLink'><h3 className='taskDescription'>{task}</h3></Link>
+          <p>Goal Time: {timeNeeded} min.</p>
+          <p>Time Left: {timeLeft} min.</p>
+          <p>Due: {dueDate}</p><button className='editTaskButton' onClick={this.editingTaskFn}>Edit</button></div>}
         <button id={id} className='deleteButton' onClick={this.props.deleteTaskFn}>Delete</button>
       </div>
     )

@@ -78,6 +78,7 @@ class AddTask extends Component {
             {/* Date picker is not closing on selection. */}
           </label>
           <button className='formSubmit' onClick={this.handleSubmit} value='Submit'>Add Task</button>
+          <button className='cancel' onClick={this.props.addingTaskFn}>Cancel</button>
         </form>
       </div>
     )

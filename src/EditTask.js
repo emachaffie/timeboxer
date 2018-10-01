@@ -11,10 +11,10 @@ class EditTask extends Component {
     // let database = firebase.database()
     super(props)
     this.state = {
-      id: '',
-      task: '',
-      timeNeeded: 0,
-      dueDate: moment()
+      id: this.props.id,
+      task: this.props.task,
+      timeNeeded: this.props.timeNeeded,
+      dueDate: this.props.dueDate
       // user: firebase.auth().currentUser
     }
     this.handleChange = this.handleChange.bind(this)
@@ -57,16 +57,17 @@ class EditTask extends Component {
   }
 
   render () {
+    const { task, timeNeeded, timeLeft, dueDate, id } = this.props
     return (
       <div className='addTaskFormDiv'>
         <form onSubmit={this.handleSubmit}>
           <label>
           Task:
-            <input type='text' name='task' onChange={this.handleChange} />
+            <input type='text' name='task' value={task} onChange={this.handleChange} />
           </label>
           <label>
             Time needed:
-            <input type='text' name='timeNeeded' onChange={this.handleChange} />
+            <input type='text' name='timeNeeded' value={timeNeeded} onChange={this.handleChange} />
           </label>
           <label>
             Due date:
@@ -77,7 +78,7 @@ class EditTask extends Component {
               onChange={this.handleDateChange} />
             {/* Date picker is not closing on selection. */}
           </label>
-          <button className='formSubmit' onClick={this.handleSubmit} value='Submit'>Add Task</button>
+          <button className='formSubmit' onClick={this.handleSubmit} value='Submit'>Done</button>
         </form>
       </div>
     )

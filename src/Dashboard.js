@@ -25,7 +25,6 @@ class Dashboard extends Component {
     this.deleteTaskFn = this.deleteTaskFn.bind(this)
     this.getTasks = this.getTasks.bind(this)
     this.addingTaskFn = this.addingTaskFn.bind(this)
-    this.editingTaskFn = this.editingTaskFn.bind(this)
   }
 
   componentDidMount () {
@@ -52,18 +51,6 @@ class Dashboard extends Component {
     } else {
       this.setState({
         addingTask: true
-      })
-    }
-  }
-
-  editingTaskFn () {
-    if (this.state.editingTask) {
-      this.setState({
-        editingTask: false
-      })
-    } else {
-      this.setState({
-        editingTask: true
       })
     }
   }
@@ -98,7 +85,6 @@ class Dashboard extends Component {
         <p>Knock out your to-do list!</p>
         {this.state.addingTask ? <AddTask addingTaskFn={this.addingTaskFn} /> : <button className='addTaskButton' onClick={this.addingTaskFn}>Add Task</button>}
         <TaskList tasks={this.state.tasks} deleteTaskFn={this.deleteTaskFn} />
-        {this.state.editingTask ? <EditTask editingTaskFn={this.addingTaskFn} /> : <button className='editTaskButton' onClick={this.editingTaskFn}>Edit</button>}
       </div>
     )
 
