@@ -3,7 +3,6 @@ import DatePicker from 'react-datepicker'
 import moment from 'moment'
 import './App.css'
 import 'react-datepicker/dist/react-datepicker.css'
-import uuid from 'uuid/v4'
 import request from 'superagent'
 
 class EditTask extends Component {
@@ -12,9 +11,9 @@ class EditTask extends Component {
     super(props)
     this.state = {
       id: this.props.id,
-      task: this.props.task,
-      timeNeeded: this.props.timeNeeded,
-      dueDate: this.props.dueDate
+      task: '',
+      timeNeeded: '',
+      dueDate: ''
       // user: firebase.auth().currentUser
     }
     this.handleChange = this.handleChange.bind(this)
@@ -37,23 +36,20 @@ class EditTask extends Component {
   }
 
   handleSubmit (event) {
-    const newId = uuid()
-    this.setState({id: newId})
-    const newTask = {
+    const editedTask = {
       id: this.state.id,
       task: this.state.task,
       timeNeeded: this.state.timeNeeded,
-      timeUsed: 0,
       timeLeft: this.state.timeNeeded,
       dueDate: this.state.dueDate,
       complete: false
     }
-    console.log(newTask)
+    console.log(this.state.id, "id")
     event.preventDefault()
     request
-      .post('http://localhost:8000/tasks/')
-      .send(newTask)
-      .then(this.props.addingTaskFn())
+      .put('http://localhost:8000/tasks/{this.state.id}')
+      .send(editedTask)
+      .then(this.props.editingTaskFn())
   }
 
   render () {
@@ -72,9 +68,9 @@ class EditTask extends Component {
           <label>
             Due date:
             <DatePicker
-              name='dueDate'
+              className='dueDate'
               dateFormat='YYYY/MM/DD'
-              selected={this.state.dueDate}
+              // selected={this.props.dueDate}
               onChange={this.handleDateChange} />
             {/* Date picker is not closing on selection. */}
           </label>

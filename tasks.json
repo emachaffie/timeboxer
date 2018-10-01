@@ -12,7 +12,6 @@
       "id": 2,
       "task": "Create component for adding an item",
       "timeNeeded": 80,
-      "timeUsed": 0,
       "timeLeft": 80,
       "dueDate": "April 2",
       "complete": false
@@ -21,7 +20,6 @@
       "id": 3,
       "task": "Create items to delete",
       "timeNeeded": "30",
-      "timeUsed": 0,
       "timeLeft": "30",
       "dueDate": "2018-09-18T18:46:32.658Z",
       "complete": false

@@ -19,9 +19,9 @@ class TaskList extends Component {
     return (
       <div>
         {taskList.map((task, i) => (
-          <div key={task.id} className='singleTaskDiv'>
-            <Task task={task.task} id={task.id} timeNeeded={task.timeNeeded} timeLeft={task.timeLeft} dueDate={task.dueDate} />
-          </div>
+          // <div key={task.id} className='singleTaskDiv'>
+          <Task task={task.task} id={task.id} timeNeeded={task.timeNeeded} timeLeft={task.timeLeft} dueDate={task.dueDate} />
+          // </div>
         ))}
       </div>
     )

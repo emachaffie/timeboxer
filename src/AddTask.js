@@ -71,7 +71,7 @@ class AddTask extends Component {
           <label>
             Due date:
             <DatePicker
-              name='dueDate'
+              className='dueDate'
               dateFormat='YYYY/MM/DD'
               selected={this.state.dueDate}
               onChange={this.handleDateChange} />
