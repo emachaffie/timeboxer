@@ -9,6 +9,7 @@ import Dashboard from './Dashboard'
 // import tasks from './tasks.json'
 import AddTask from './AddTask'
 import Task from './Task'
+import EditTask from './EditTask'
 
 class App extends Component {
   render () {
@@ -17,8 +18,9 @@ class App extends Component {
         <div>
           <Route exact path='/' component={Dashboard} />
           <Route path='/add' component={AddTask} />
-          <Route path='/task/:id' render={(props) => <Task {...props} />} />
-          {/* <Route path='/edit/:id' render={(props) => <EditTask {...props} />} /> */}
+          <Route path='/task/:id' component={Task} />
+          {/* render={(props) => <Task {...props} /> THIS LINE TAKEN OUT OF ABOVE TO TEST */}
+          <Route path='/edit/:id' render={(props) => <EditTask {...props} />} />
           {/* <Route path='/login' component={LoginPage} /> */}
           {/* <Route path='/register' component={Register} /> */}
         </div>

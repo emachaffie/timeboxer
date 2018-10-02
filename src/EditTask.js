@@ -3,18 +3,17 @@ import DatePicker from 'react-datepicker'
 import moment from 'moment'
 import './App.css'
 import 'react-datepicker/dist/react-datepicker.css'
-import uuid from 'uuid/v4'
 import request from 'superagent'
 
-class AddTask extends Component {
+class EditTask extends Component {
   constructor (props) {
     // let database = firebase.database()
     super(props)
     this.state = {
-      id: '',
+      id: this.props.id,
       task: '',
-      timeNeeded: 0,
-      dueDate: moment()
+      timeNeeded: '',
+      dueDate: ''
       // user: firebase.auth().currentUser
     }
     this.handleChange = this.handleChange.bind(this)
@@ -37,52 +36,49 @@ class AddTask extends Component {
   }
 
   handleSubmit (event) {
-    const newId = uuid()
-    this.setState({id: newId})
-    const newTask = {
+    const editedTask = {
       id: this.state.id,
       task: this.state.task,
       timeNeeded: this.state.timeNeeded,
-      timeUsed: 0,
       timeLeft: this.state.timeNeeded,
       dueDate: this.state.dueDate,
       complete: false
     }
-    console.log(newTask)
+    console.log(this.state.id, "id")
     event.preventDefault()
     request
-      .post('http://localhost:8000/tasks/')
-      .send(newTask)
-      .then(this.props.addingTaskFn())
+      .put('http://localhost:8000/tasks/{this.state.id}')
+      .send(editedTask)
+      .then(this.props.editingTaskFn())
   }
 
   render () {
+    const { task, timeNeeded, timeLeft, dueDate, id } = this.props
     return (
       <div className='addTaskFormDiv'>
         <form onSubmit={this.handleSubmit}>
           <label>
           Task:
-            <input type='text' name='task' onChange={this.handleChange} />
+            <input type='text' name='task' value={task} onChange={this.handleChange} />
           </label>
           <label>
             Time needed:
-            <input type='text' name='timeNeeded' onChange={this.handleChange} />
+            <input type='text' name='timeNeeded' value={timeNeeded} onChange={this.handleChange} />
           </label>
           <label>
             Due date:
             <DatePicker
               className='dueDate'
               dateFormat='YYYY/MM/DD'
-              selected={this.state.dueDate}
+              // selected={this.props.dueDate}
               onChange={this.handleDateChange} />
             {/* Date picker is not closing on selection. */}
           </label>
-          <button className='formSubmit' onClick={this.handleSubmit} value='Submit'>Add Task</button>
-          <button className='cancel' onClick={this.props.addingTaskFn}>Cancel</button>
+          <button className='formSubmit' onClick={this.handleSubmit} value='Submit'>Done</button>
         </form>
       </div>
     )
   }
 }
 
-export default AddTask
+export default EditTask

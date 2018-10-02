@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import './App.css'
 // import firebase from './firebase'
 import { BrowserRouter as Link, NavLink } from 'react-router-dom'
-// import tasks from './tasks.json'
+import Task from './Task'
 
 class TaskList extends Component {
   constructor (props) {
@@ -19,13 +19,9 @@ class TaskList extends Component {
     return (
       <div>
         {taskList.map((task, i) => (
-          <div key={task.id} className='singleTaskDiv'>
-            <Link to={`/task/${task.id}`} className='taskLink'><h3 className='taskDescription'>{task.task}</h3></Link>
-            <p>Goal Time: {task.timeNeeded} min.</p>
-            <p>Time Left: {task.timeLeft} min.</p>
-            {/* <EditTask /> */}
-            <button id={task.id} className='deleteButton' onClick={this.props.deleteTaskFn}>Delete</button>
-          </div>
+          // <div key={task.id} className='singleTaskDiv'>
+          <Task task={task.task} id={task.id} timeUsed={task.timeUsed} timeNeeded={task.timeNeeded} dueDate={task.dueDate} />
+          // </div>
         ))}
       </div>
     )

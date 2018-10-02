@@ -1,47 +1,67 @@
 {
   "tasks": [
     {
-      "task": "Create component for list of items",
-      "timeNeeded": 120,
+      "id": 1,
+      "task": "Go bananas",
+      "timeNeeded": "300",
       "timeUsed": 0,
-      "timeLeft": 120,
-      "dueDate": "April 2",
+      "dueDate": "2018-10-04T04:00:00.000Z",
       "complete": false
     },
     {
       "id": 2,
       "task": "Create component for adding an item",
-      "timeNeeded": 80,
+      "timeNeeded": 200,
       "timeUsed": 0,
-      "timeLeft": 80,
       "dueDate": "April 2",
       "complete": false
     },
     {
       "id": 3,
       "task": "Create items to delete",
-      "timeNeeded": "30",
+      "timeNeeded": 30,
       "timeUsed": 0,
-      "timeLeft": "30",
       "dueDate": "2018-09-18T18:46:32.658Z",
       "complete": false
     },
     {
       "id": 5,
       "task": "Learn Vue",
-      "timeNeeded": "50",
+      "timeNeeded": 50,
       "timeUsed": 0,
-      "timeLeft": "50",
       "dueDate": "2018-09-21T20:26:17.259Z",
       "complete": false
     },
     {
       "id": 6,
       "task": "Get edit working",
-      "timeNeeded": "500",
+      "timeNeeded": 500,
       "timeUsed": 0,
-      "timeLeft": "500",
       "dueDate": "2018-10-02T20:33:21.000Z",
+      "complete": false
+    },
+    {
+      "id": 7,
+      "task": "Finish add and delete",
+      "timeNeeded": 30,
+      "timeUsed": 0,
+      "dueDate": "2018-09-21T22:26:40.598Z",
+      "complete": false
+    },
+    {
+      "id": 8,
+      "task": "Eat a bagel",
+      "timeNeeded": 300,
+      "timeUsed": 0,
+      "dueDate": "2018-10-10T04:00:00.000Z",
+      "complete": false
+    },
+    {
+      "id": 9,
+      "task": "Fix all the things",
+      "timeNeeded": 40,
+      "timeUsed": 0,
+      "dueDate": "2018-09-27T16:35:00.732Z",
       "complete": false
     }
   ]
