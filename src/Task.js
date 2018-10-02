@@ -7,6 +7,7 @@ import './App.css'
 import { BrowserRouter as Link, NavLink } from 'react-router-dom'
 import request from 'superagent'
 import DatePicker from 'react-datepicker'
+import moment from 'moment'
 
 class Task extends Component {
   constructor (props) {
@@ -17,7 +18,7 @@ class Task extends Component {
       task: this.props.task,
       timeNeeded: this.props.timeNeeded,
       timeUsed: this.props.timeUsed,
-      dueDate: this.props.dueDate
+      dueDate: moment(this.props.dueDate)
     }
     this.editingTaskFn = this.editingTaskFn.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -90,9 +91,8 @@ class Task extends Component {
               <DatePicker
                 className='dueDate'
                 dateFormat='YYYY/MM/DD'
-                // selected={this.state.dueDate}
+                selected={this.state.dueDate}
                 onChange={this.handleDateChange} />
-              {/* Date picker is not closing on selection. */}
             </label>
             <button className='formSubmit' onClick={this.handleSubmit} value='Submit'>Done</button>
           </form>

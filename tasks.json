@@ -5,7 +5,7 @@
       "task": "Go bananas",
       "timeNeeded": "300",
       "timeUsed": 0,
-      "dueDate": "2018-10-04T04:00:00.000Z",
+      "dueDate": "2018-10-24T04:00:00.000Z",
       "complete": false
     },
     {
@@ -13,7 +13,7 @@
       "task": "Create component for adding an item",
       "timeNeeded": 200,
       "timeUsed": 0,
-      "dueDate": "April 2",
+      "dueDate": "2018-09-27T16:35:00.732Z",
       "complete": false
     },
     {
