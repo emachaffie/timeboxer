@@ -5,8 +5,6 @@ import React, { Component } from 'react'
 import './App.css'
 // import firebase from './firebase'
 import { BrowserRouter as Link, NavLink } from 'react-router-dom'
-import tasks from './tasks.json'
-// import EditTask from './EditTask.js'
 import request from 'superagent'
 import DatePicker from 'react-datepicker'
 
@@ -18,6 +16,7 @@ class Task extends Component {
       id: this.props.id,
       task: this.props.task,
       timeNeeded: this.props.timeNeeded,
+      timeUsed: this.props.timeUsed,
       dueDate: this.props.dueDate
     }
     this.editingTaskFn = this.editingTaskFn.bind(this)
@@ -27,7 +26,7 @@ class Task extends Component {
   }
 
   componentDidMount () {
-    console.log(this.state.id)
+    console.log(this.state.dueDate)
   }
 
   editingTaskFn () {
@@ -60,7 +59,7 @@ class Task extends Component {
       id: this.state.id,
       task: this.state.task,
       timeNeeded: this.state.timeNeeded,
-      timeLeft: this.state.timeNeeded,
+      timeUsed: this.state.timeUsed,
       dueDate: this.state.dueDate,
       complete: false
     }
@@ -73,7 +72,7 @@ class Task extends Component {
   }
 
   render () {
-    const { task, timeNeeded, timeLeft, dueDate, id } = this.props
+    let { task, timeNeeded, timeUsed, dueDate, id } = this.state
     if (this.state.editingTask) {
       return (
         <div className='addTaskFormDiv'>
@@ -91,7 +90,7 @@ class Task extends Component {
               <DatePicker
                 className='dueDate'
                 dateFormat='YYYY/MM/DD'
-                // selected={this.props.dueDate}
+                // selected={this.state.dueDate}
                 onChange={this.handleDateChange} />
               {/* Date picker is not closing on selection. */}
             </label>
@@ -105,8 +104,8 @@ class Task extends Component {
           <div key={id} className='singleTaskDiv'>
             <Link to={`/task/${id}`} className='taskLink'><h3 className='taskDescription'>{task}</h3></Link>
             <p>Goal Time: {timeNeeded} min.</p>
-            <p>Time Left: {timeLeft} min.</p>
-            <p>Due: {dueDate}</p>
+            <p>Time Used: {timeUsed} min.</p>
+            {/* <p>Due: {dueDate}</p> */}
             <button className='editTaskButton' onClick={this.editingTaskFn}>Edit</button>
           </div>
           <button id={id} className='deleteButton' onClick={this.props.deleteTaskFn}>Delete</button>

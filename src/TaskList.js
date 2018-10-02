@@ -20,7 +20,7 @@ class TaskList extends Component {
       <div>
         {taskList.map((task, i) => (
           // <div key={task.id} className='singleTaskDiv'>
-          <Task task={task.task} id={task.id} timeNeeded={task.timeNeeded} timeLeft={task.timeLeft} dueDate={task.dueDate} />
+          <Task task={task.task} id={task.id} timeUsed={task.timeUsed} timeNeeded={task.timeNeeded} dueDate={task.dueDate} />
           // </div>
         ))}
       </div>
